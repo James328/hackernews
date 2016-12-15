@@ -53,16 +53,34 @@ class App extends Component {
   }
 }
 
-class Search extends Component {
+// ES6 class component for Search
+// class Search extends Component {
+//   render() {
+//     const { value, onChange, children } = this.props;
+//     return (
+//       <form>
+//         {children} <input type="text" value={value} onChange={onChange} />
+//       </form>
+//     );
+//   }
+// }
 
-  render() {
-    const { value, onChange, children } = this.props;
-    return (
-      <form>
-        {children} <input type="text" value={value} onChange={onChange} />
-      </form>
-    );
-  }
+/**
+ * Note: once you would need access to its internatl component state or 
+ * lifecycle methods, you would refactor the below snippet into the above ES6 
+ * class component.
+ */
+
+// The above Search component, refactored to lightweight functional stateless component
+const Search = ({ value, onChange, children }) => {
+
+  // do something
+
+  return (
+    <form>
+      {children} <input type="text" value={value} onChange={onChange} />
+    </form>
+  );
 }
 
 class Table extends Component {
