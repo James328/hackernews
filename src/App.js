@@ -18,10 +18,15 @@ const list = [
     points: 5,
     objectID: 1,
   },
+  {
+    title: 'Vue.js',
+    url: 'https://github.com/reactjs/redux',
+    author: 'James',
+    num_comments: 6,
+    points: 1,
+    objectID: 2,
+  }
 ];
-
-// ES6 sugar search function
-const isSearched = (searchTerm) => (item) => !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
 
@@ -86,11 +91,15 @@ const Search = ({ value, onChange, children }) =>
     {children} <input type="text" value={value} onChange={onChange} />
   </form>
 
+// ES6 sugar search function
+const isSearched = (searchTerm) => (item) => !searchTerm || item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
 const Table =({ list, pattern, onDismiss }) =>
       <div className="table">
       { list.filter(isSearched(pattern)).map((item) =>
         <div key={item.objectID} className="table-row">
           <span style={{ width: '40%' }}>
+            {item.objectID}&nbsp;
             <a href={item.url}>{item.title}</a>
           </span>
           <span style={{ width: '30%' }}>
@@ -103,7 +112,10 @@ const Table =({ list, pattern, onDismiss }) =>
             {item.points}
           </span>
           <span style={{ width: '10%' }}>
-            <Button onClick={() => onDismiss(item.objectID)}  className="button-inline">
+            <Button 
+              onClick={() => onDismiss(item.objectID)}
+              className="button-inline"
+            >
               Dismiss
             </Button>
           </span>
@@ -112,6 +124,12 @@ const Table =({ list, pattern, onDismiss }) =>
       </div>
 
 const Button = ({ onClick, className = '', children }) =>
-  <button onClick={onClick} className={className} type="button">{children}</button>
+  <button 
+    onClick={onClick}
+    className={className}
+    type="button"
+  >
+    {children}
+  </button>
 
 export default App;
